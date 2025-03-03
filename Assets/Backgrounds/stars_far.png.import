@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dx8cxx37lbibd"
-path="res://.godot/imported/darkPurple.png-8641f52692b6e8eebac0c982db4e6f4e.ctex"
+uid="uid://rb0u1tsivtqg"
+path="res://.godot/imported/stars_far.png-507a5821cf1c497a50d7a16611180d33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Backgrounds/darkPurple.png"
-dest_files=["res://.godot/imported/darkPurple.png-8641f52692b6e8eebac0c982db4e6f4e.ctex"]
+source_file="res://Assets/Backgrounds/stars_far.png"
+dest_files=["res://.godot/imported/stars_far.png-507a5821cf1c497a50d7a16611180d33.ctex"]
 
 [params]
 
