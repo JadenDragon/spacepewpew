@@ -6,6 +6,7 @@
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 motion_mode = 1
 script = ExtResource("1_a1st7")
+shipSpeed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.7)
@@ -13,3 +14,5 @@ texture = ExtResource("1_4qh4k")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-6, -27, 6, -27, 9, -8, 25, 1, 35, -4, 33, 17, 10, 19, 5, 26, -6, 26, -10, 19, -33, 17, -35, -4, -25, 1, -8, -8)
+
+[node name="Barrel" type="Marker2D" parent="."]
