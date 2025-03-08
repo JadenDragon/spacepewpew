@@ -3,7 +3,7 @@ extends CharacterBody2D
 signal bullet_shot(bullet_scene, bulletPosition)
 
 @export var shipSpeed = 300
-@export var fireRate = 0.3
+@export var shootSpeed = 0.3
 
 @onready var barrel = $Barrel
 
@@ -21,7 +21,7 @@ func _process(delta):
 			shoot_cd = true
 			shoot()
 			#timer for shooting cooldown
-			await get_tree().create_timer(fireRate).timeout
+			await get_tree().create_timer(shootSpeed).timeout
 			shoot_cd = false
 
 #physics process cause character is a physics body
