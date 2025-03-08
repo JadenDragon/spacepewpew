@@ -12,6 +12,8 @@ func _ready():
 	#report when player not found
 	assert(player != null)
 	player.global_position = playerSpawnPoint.global_position
+	
+	#runs the _on_player_bullet_shot function
 	player.bullet_shot.connect(_on_player_bullet_shot)
 
 

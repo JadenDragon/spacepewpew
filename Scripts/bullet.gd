@@ -3,6 +3,7 @@ extends Area2D
 @export var bulletSpeed = 800
 
 func _physics_process(delta):
+	#shoot the lasers in the Y axis
 	global_position.y += -bulletSpeed * delta
 
 
