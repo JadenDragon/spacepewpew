@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_duv7m"]
 [ext_resource type="PackedScene" uid="uid://cwwc3utxh8m0k" path="res://Scenes/player.tscn" id="2_1kxch"]
-[ext_resource type="PackedScene" uid="uid://pfiloqabxs5t" path="res://Scenes/Enemy.tscn" id="3_775dm"]
+[ext_resource type="PackedScene" uid="uid://cf57x03s88sms" path="res://Scenes/bullet.tscn" id="3_23g7b"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_duv7m")
@@ -13,7 +13,7 @@ position = Vector2(270, 843)
 [node name="PlayerSpawnMark" type="Marker2D" parent="."]
 position = Vector2(270, 850)
 
-[node name="BulletContainer" type="Node2D" parent="."]
+[node name="Bullet" parent="." instance=ExtResource("3_23g7b")]
+position = Vector2(194, 796)
 
-[node name="Enemy" parent="." instance=ExtResource("3_775dm")]
-position = Vector2(283, 130)
+[node name="BulletContainer" type="Node2D" parent="."]
