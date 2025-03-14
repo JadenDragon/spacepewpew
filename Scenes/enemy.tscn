@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmvjs8k1ccnv"]
+[gd_scene load_steps=4 format=3 uid="uid://cmvjs8k1ccnv"]
 
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_88u17"]
 [ext_resource type="Texture2D" uid="uid://cw4fsem348hbf" path="res://Assets/Enemies/enemyRed1.png" id="1_op15m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fdn8d"]
@@ -7,6 +8,7 @@ radius = 32.0
 height = 64.0
 
 [node name="Enemy" type="Area2D"]
+script = ExtResource("1_88u17")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.7)

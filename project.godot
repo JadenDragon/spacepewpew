@@ -59,6 +59,12 @@ shoot={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="player"
+2d_render/layer_2="enemy"
+2d_render/layer_3="bullet"
+
 [rendering]
 
 environment/defaults/default_clear_color=Color(0.447065, 0.107038, 0.535816, 1)
