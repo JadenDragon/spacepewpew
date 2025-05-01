@@ -1,7 +1,13 @@
 extends Node2D
+
+#array for list of enemies
+@export var enemy_scenes: Array[PackedScene] = []
+
 #ref for player spawn point
 @onready var playerSpawnPoint = $PlayerSpawnMark
 @onready var bulletContainer = $BulletContainer
+@onready var enemyContainer = $EnemyContainer
+@onready var timer = $EnemySpawnTimer
 
 var player = null
 
@@ -33,3 +39,9 @@ func _on_player_bullet_shot(bullet_scene, bulletPosition):
 	bullet.global_position = bulletPosition
 	#add bullet to container
 	bulletContainer.add_child(bullet)
+
+func _on_enemy_spawn_timer_timeout():
+	#create new enemy instance from random
+	var randE = enemy_scenes.pick_random().instantiate()
+	randE.global_position = Vector2(randf_range(50,500), 50)
+	enemyContainer.add_child(randE)
