@@ -11,6 +11,7 @@ height = 64.0
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_88u17")
+hitpoints = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.7, 0.7)

@@ -43,5 +43,5 @@ func _on_player_bullet_shot(bullet_scene, bulletPosition):
 func _on_enemy_spawn_timer_timeout():
 	#create new enemy instance from random
 	var randE = enemy_scenes.pick_random().instantiate()
-	randE.global_position = Vector2(randf_range(50,500), 50)
+	randE.global_position = Vector2(randf_range(50,500), -50)
 	enemyContainer.add_child(randE)
