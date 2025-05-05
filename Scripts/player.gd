@@ -1,6 +1,7 @@
 class_name Player extends CharacterBody2D
 
 signal bullet_shot(bullet_scene, bulletPosition)
+signal player_died
 
 @export var shipSpeed = 300
 @export var shootSpeed = 0.3
@@ -40,4 +41,5 @@ func shoot():
 	bullet_shot.emit(bullet_scene, barrel.global_position)
 
 func die():
+	player_died.emit()
 	queue_free()

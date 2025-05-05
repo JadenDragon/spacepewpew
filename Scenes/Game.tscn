@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://7waa1cc55ww3"]
+[gd_scene load_steps=7 format=3 uid="uid://7waa1cc55ww3"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_duv7m"]
 [ext_resource type="PackedScene" uid="uid://cwwc3utxh8m0k" path="res://Scenes/player.tscn" id="2_1kxch"]
 [ext_resource type="PackedScene" uid="uid://drn2wet84e7xv" path="res://Scenes/hud.tscn" id="4_2hnd0"]
 [ext_resource type="PackedScene" uid="uid://4j0us14nwre6" path="res://Scenes/kami_kaze_enemy.tscn" id="4_att2b"]
 [ext_resource type="PackedScene" uid="uid://cmvjs8k1ccnv" path="res://Scenes/enemy.tscn" id="4_xc0hp"]
+[ext_resource type="PackedScene" uid="uid://i44jinmm4kah" path="res://Scenes/game_over_screen.tscn" id="5_jmlj7"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_duv7m")
@@ -13,6 +14,9 @@ enemy_scenes = Array[PackedScene]([ExtResource("4_xc0hp"), ExtResource("4_att2b"
 [node name="UILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="UILayer" instance=ExtResource("4_2hnd0")]
+
+[node name="GameOverScreen" parent="UILayer" instance=ExtResource("5_jmlj7")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("2_1kxch")]
 position = Vector2(270, 843)

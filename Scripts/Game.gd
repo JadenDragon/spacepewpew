@@ -9,7 +9,7 @@ extends Node2D
 @onready var enemyContainer = $EnemyContainer
 @onready var timer = $EnemySpawnTimer
 @onready var hud = $UILayer/HUD
-
+@onready var GameOverScreen = $UILayer/GameOverScreen
 
 var player = null
 #set & update score on hud based on score value
@@ -17,18 +17,34 @@ var score := 0:
 	set(value):
 		score = value
 		hud.score = score
+var high_score
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#opens the save file of user when game opens
+	var save_file = FileAccess.open("user://save.data", FileAccess.READ)
+	if save_file != null:
+		high_score = save_file.get_32()
+	else:
+		high_score = 0
+		save_game()
+	
 	hud.score = 0
 	pass # Replace with function body.
 	player = get_tree().get_first_node_in_group("player")
 	#report when player not found
 	assert(player != null)
 	player.global_position = playerSpawnPoint.global_position
-	
 	#runs the _on_player_bullet_shot function
 	player.bullet_shot.connect(_on_player_bullet_shot)
+	player.player_died.connect(_on_player_died)
+
+#creates a path to save data on user machine
+func save_game():
+	#create a save file from user play data.
+	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
+	save_file.store_32(high_score)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,4 +75,14 @@ func _on_enemy_spawn_timer_timeout():
 func _on_enemy_killed(points):
 	#gets points value from enemy when killed
 	score += points
+	if score > high_score:
+		high_score = score 
 	print(score) 
+
+func _on_player_died():
+	GameOverScreen.set_score(score)
+	GameOverScreen.set_Highscore(high_score)
+	save_game()
+	await get_tree().create_timer(0.8).timeout
+	GameOverScreen.visible = true
+
