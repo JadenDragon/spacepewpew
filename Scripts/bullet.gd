@@ -1,5 +1,6 @@
 extends Area2D
 
+
 @export var bulletSpeed = 800.00
 @export var damage = 1
 
