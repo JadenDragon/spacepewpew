@@ -12,6 +12,11 @@ extends Node2D
 @onready var GameOverScreen = $UILayer/GameOverScreen
 @onready var pBackground = $ParallaxBackground
 
+@onready var bullet_sound = $SFX/Laser_SFX
+@onready var damage_sound = $SFX/Damage_SFX
+@onready var explode_sound = $SFX/Explode_SFX
+@onready var restart_sound = $SFX/Restart_SFX
+
 var player = null
 #set & update score on hud based on score value
 var score := 0:
@@ -20,7 +25,7 @@ var score := 0:
 		hud.score = score
 var high_score
 
-var scroll_speed = 50
+var scroll_speed = 75
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -49,7 +54,7 @@ func save_game():
 	save_file.store_32(high_score)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
 	#keys mainly used for testing
 	#quits the game when action key is pressed
 	if Input.is_action_just_pressed("quit"):
@@ -59,12 +64,12 @@ func _process(_delta):
 		get_tree().reload_current_scene()
 		
 	if timer.wait_time > 0.5:
-		timer.wait_time -= _delta * 0.005
+		timer.wait_time -= delta * 0.005
 	elif timer.wait_time < 0.5:
 		timer.wait_time = 0.5
 	#print(timer.wait_time)
 	
-	pBackground.scroll_offset.y = _delta * scroll_speed
+	pBackground.scroll_offset.y += delta * scroll_speed
 	if pBackground.scroll_offset.y >= 960:
 		pBackground.scroll_offset.y = 0
 	print(pBackground.scroll_offset.y)
@@ -75,16 +80,22 @@ func _on_player_bullet_shot(bullet_scene, bulletPosition):
 	bullet.global_position = bulletPosition
 	#add bullet to container
 	bulletContainer.add_child(bullet)
+	bullet_sound.play()
 
 func _on_enemy_spawn_timer_timeout():
 	#create new enemy instance from random
 	var randE = enemy_scenes.pick_random().instantiate()
 	randE.global_position = Vector2(randf_range(50,500), -50)
+	#connect the damage sound to enemy when spawned
+	randE.damage.connect(_on_enemy_damage)
 	randE.killed.connect(_on_enemy_killed)
 	enemyContainer.add_child(randE)
 	
+func _on_enemy_damage():
+	damage_sound.play()
 	
 func _on_enemy_killed(points):
+	damage_sound.play()
 	#gets points value from enemy when killed
 	score += points
 	if score > high_score:
@@ -92,6 +103,7 @@ func _on_enemy_killed(points):
 	#print(score) 
 
 func _on_player_died():
+	explode_sound.play()
 	GameOverScreen.set_score(score)
 	GameOverScreen.set_Highscore(high_score)
 	save_game()

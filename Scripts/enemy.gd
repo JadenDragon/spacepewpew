@@ -1,6 +1,7 @@
 class_name Enemy extends Area2D
 
 signal killed(points)
+signal damage
 
 @export var speed = 150
 @export var hitpoints = 1
@@ -25,3 +26,6 @@ func take_damage(amount):
 		#sends points of enemies on killed to game script
 		killed.emit(points)
 		die()
+		damage.emit()
+	else:
+		damage.emit()
