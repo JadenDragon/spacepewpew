@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxjaodc162s2n"]
+
+[ext_resource type="Texture2D" uid="uid://ce6aa1w7n2pus" path="res://Assets/Damage/playerShip1_damage1.png" id="1_nyc1j"]
+[ext_resource type="Texture2D" uid="uid://cdwkal214yhim" path="res://Assets/Damage/playerShip1_damage2.png" id="2_00uv5"]
+[ext_resource type="Texture2D" uid="uid://dtphvo0vi8xq7" path="res://Assets/Damage/playerShip1_damage3.png" id="3_q8pgw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wesou"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nyc1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_00uv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_q8pgw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="DeathAnimation" type="Node2D"]
+
+[node name="Explosion" type="AnimationPlayer" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wesou")

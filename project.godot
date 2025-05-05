@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Spacepewpew"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -67,4 +67,6 @@ shoot={
 
 [rendering]
 
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.447065, 0.107038, 0.535816, 1)
