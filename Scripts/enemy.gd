@@ -1,9 +1,10 @@
 class_name Enemy extends Area2D
 
-signal killed
+signal killed(points)
 
 @export var speed = 150
 @export var hitpoints = 1
+@export var points = 100
 
 func _physics_process(delta):
 	global_position.y += speed * delta
@@ -21,5 +22,6 @@ func _on_body_entered(body):
 func take_damage(amount):
 	hitpoints -= amount
 	if hitpoints <= 0:
-		killed.emit()
+		#sends points of enemies on killed to game script
+		killed.emit(points)
 		die()

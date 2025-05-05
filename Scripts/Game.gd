@@ -3,17 +3,24 @@ extends Node2D
 #array for list of enemies
 @export var enemy_scenes: Array[PackedScene] = []
 
-#ref for player spawn point
+#ref for other scenes in Game scene
 @onready var playerSpawnPoint = $PlayerSpawnMark
 @onready var bulletContainer = $BulletContainer
 @onready var enemyContainer = $EnemyContainer
 @onready var timer = $EnemySpawnTimer
+@onready var hud = $UILayer/HUD
+
 
 var player = null
-var score := 0
+#set & update score on hud based on score value
+var score := 0:
+	set(value):
+		score = value
+		hud.score = score
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	hud.score = 0
 	pass # Replace with function body.
 	player = get_tree().get_first_node_in_group("player")
 	#report when player not found
@@ -49,6 +56,7 @@ func _on_enemy_spawn_timer_timeout():
 	enemyContainer.add_child(randE)
 	
 	
-func _on_enemy_killed():
-	score += 100
-	print(score)
+func _on_enemy_killed(points):
+	#gets points value from enemy when killed
+	score += points
+	print(score) 
