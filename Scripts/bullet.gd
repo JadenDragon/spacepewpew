@@ -1,8 +1,9 @@
 extends Area2D
 
-@export var bulletSpeed = 800
+@export var bulletSpeed = 800.00
 @export var damage = 1
 
+#function takes float values ha ha
 func _physics_process(delta):
 	#shoot the lasers in the Y axis
 	global_position.y += -bulletSpeed * delta

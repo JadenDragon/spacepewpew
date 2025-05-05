@@ -24,7 +24,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#keys mainly used for testing
 	#quits the game when action key is pressed
 	if Input.is_action_just_pressed("quit"):
