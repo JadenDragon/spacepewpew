@@ -7,7 +7,9 @@ extends Node2D
 @onready var playerSpawnPoint = $PlayerSpawnMark
 @onready var bulletContainer = $BulletContainer
 @onready var enemyContainer = $EnemyContainer
+
 @onready var timer = $EnemySpawnTimer
+
 @onready var hud = $UILayer/HUD
 @onready var GameOverScreen = $UILayer/GameOverScreen
 @onready var pBackground = $ParallaxBackground
@@ -72,7 +74,7 @@ func _process(delta):
 	pBackground.scroll_offset.y += delta * scroll_speed
 	if pBackground.scroll_offset.y >= 960:
 		pBackground.scroll_offset.y = 0
-	print(pBackground.scroll_offset.y)
+	#print(pBackground.scroll_offset.y)
 
 func _on_player_bullet_shot(bullet_scene, bulletPosition):
 	#create bullet from bullet scene and adds it 
@@ -84,12 +86,15 @@ func _on_player_bullet_shot(bullet_scene, bulletPosition):
 
 func _on_enemy_spawn_timer_timeout():
 	#create new enemy instance from random
-	var randE = enemy_scenes.pick_random().instantiate()
-	randE.global_position = Vector2(randf_range(50,500), -50)
-	#connect the damage sound to enemy when spawned
-	randE.damage.connect(_on_enemy_damage)
-	randE.killed.connect(_on_enemy_killed)
-	enemyContainer.add_child(randE)
+	#print("kmstwice")
+	if !enemy_scenes.is_empty():
+		#print("kms")
+		var randE = enemy_scenes.pick_random().instantiate()
+		randE.global_position = Vector2(randf_range(50,500), -50)
+		#connect the damage sound to enemy when spawned
+		randE.damage.connect(_on_enemy_damage)
+		randE.killed.connect(_on_enemy_killed)
+		enemyContainer.add_child(randE)
 	
 func _on_enemy_damage():
 	damage_sound.play()

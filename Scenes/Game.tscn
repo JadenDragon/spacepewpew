@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://7waa1cc55ww3"]
+[gd_scene load_steps=15 format=3 uid="uid://7waa1cc55ww3"]
 
 [ext_resource type="Script" path="res://Scripts/Game.gd" id="1_duv7m"]
 [ext_resource type="PackedScene" uid="uid://cwwc3utxh8m0k" path="res://Scenes/player.tscn" id="2_1kxch"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://i44jinmm4kah" path="res://Scenes/game_over_screen.tscn" id="5_jmlj7"]
 [ext_resource type="AudioStream" uid="uid://bqwphvi6xcfuf" path="res://Assets/SFX/explosion01.wav" id="6_k50t4"]
 [ext_resource type="AudioStream" uid="uid://cf6by0y6vmop6" path="res://Assets/SFX/Warp Jingle.wav" id="7_x3puc"]
+[ext_resource type="PackedScene" uid="uid://p8dra5k3ykjm" path="res://Scenes/main_menu.tscn" id="8_e1t55"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ycr73"]
 particle_flag_disable_z = true
@@ -71,6 +72,14 @@ region_enabled = true
 region_rect = Rect2(0, 0, 540, 960)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" parent="UILayer" instance=ExtResource("8_e1t55")]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [node name="HUD" parent="UILayer" instance=ExtResource("4_2hnd0")]
 

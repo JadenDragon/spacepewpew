@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://p8dra5k3ykjm"]
+
+[ext_resource type="Texture2D" uid="uid://dx8cxx37lbibd" path="res://Assets/Backgrounds/darkPurple.png" id="1_c23k4"]
+[ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_jbhdb"]
+[ext_resource type="FontFile" uid="uid://bb4lk1ccksgks" path="res://Assets/Fonts/m5x7.ttf" id="1_l113m"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3rygm"]
+texture = ExtResource("1_c23k4")
+modulate_color = Color(1, 1, 1, 0.588235)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y5sgg"]
+bg_color = Color(0.168627, 0.631373, 0.360784, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jbhdb")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_3rygm")
+
+[node name="StartGame" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -207.0
+offset_top = -165.0
+offset_right = 208.0
+offset_bottom = -55.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_l113m")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5sgg")
+text = "Start Game"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = 36.0
+offset_right = 158.5
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_l113m")
+theme_override_font_sizes/font_size = 96
+theme_override_styles/normal = SubResource("StyleBoxFlat_y5sgg")
+text = "Exit	"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -222.0
+offset_top = 115.0
+offset_right = 222.0
+offset_bottom = 191.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = -5
+theme_override_fonts/font = ExtResource("1_l113m")
+theme_override_font_sizes/font_size = 96
+text = "Space Hunters"
+
+[connection signal="pressed" from="StartGame" to="." method="_on_start_game_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
