@@ -56,6 +56,12 @@ func _process(_delta):
 	#restarts the game when action key is pressed
 	elif Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
+		
+	if timer.wait_time > 0.5:
+		timer.wait_time -= _delta * 0.005
+	elif timer.wait_time < 0.5:
+		timer.wait_time = 0.5
+	print(timer.wait_time)
 
 func _on_player_bullet_shot(bullet_scene, bulletPosition):
 	#create bullet from bullet scene and adds it 
@@ -77,7 +83,7 @@ func _on_enemy_killed(points):
 	score += points
 	if score > high_score:
 		high_score = score 
-	print(score) 
+	#print(score) 
 
 func _on_player_died():
 	GameOverScreen.set_score(score)
