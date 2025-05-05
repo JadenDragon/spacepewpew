@@ -31,6 +31,9 @@ func _physics_process(_delta):
 	print(direction)
 	velocity = direction * shipSpeed	
 	move_and_slide()
+	
+	#limiting player positiion
+	global_position = global_position.clamp(Vector2.ZERO, get_viewport_rect().size)
 
 func shoot():
 	#pass bullet scene and global position of barrel
