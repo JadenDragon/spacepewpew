@@ -10,6 +10,7 @@ extends Node2D
 @onready var timer = $EnemySpawnTimer
 @onready var hud = $UILayer/HUD
 @onready var GameOverScreen = $UILayer/GameOverScreen
+@onready var pBackground = $ParallaxBackground
 
 var player = null
 #set & update score on hud based on score value
@@ -18,6 +19,8 @@ var score := 0:
 		score = value
 		hud.score = score
 var high_score
+
+var scroll_speed = 50
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,8 +47,6 @@ func save_game():
 	#create a save file from user play data.
 	var save_file = FileAccess.open("user://save.data", FileAccess.WRITE)
 	save_file.store_32(high_score)
-	
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -61,7 +62,12 @@ func _process(_delta):
 		timer.wait_time -= _delta * 0.005
 	elif timer.wait_time < 0.5:
 		timer.wait_time = 0.5
-	print(timer.wait_time)
+	#print(timer.wait_time)
+	
+	pBackground.scroll_offset.y = _delta * scroll_speed
+	if pBackground.scroll_offset.y >= 960:
+		pBackground.scroll_offset.y = 0
+	print(pBackground.scroll_offset.y)
 
 func _on_player_bullet_shot(bullet_scene, bulletPosition):
 	#create bullet from bullet scene and adds it 
