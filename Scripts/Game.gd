@@ -10,6 +10,7 @@ extends Node2D
 @onready var timer = $EnemySpawnTimer
 
 var player = null
+var score := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -44,4 +45,10 @@ func _on_enemy_spawn_timer_timeout():
 	#create new enemy instance from random
 	var randE = enemy_scenes.pick_random().instantiate()
 	randE.global_position = Vector2(randf_range(50,500), -50)
+	randE.killed.connect(_on_enemy_killed)
 	enemyContainer.add_child(randE)
+	
+	
+func _on_enemy_killed():
+	score += 100
+	print(score)

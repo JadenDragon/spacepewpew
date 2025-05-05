@@ -28,7 +28,7 @@ func _process(_delta):
 func _physics_process(_delta):
 	var direction = Vector2(Input.get_axis("move_left", "move_right"), 
 							Input.get_axis("move_up", "move_down"))
-	print(direction)
+	#print(direction)
 	velocity = direction * shipSpeed	
 	move_and_slide()
 	
